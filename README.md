@@ -36,6 +36,17 @@ p parsed
 
 ```
 
+## Performance comparison
+
+Small VDF File
+```
+       user       system     total    real
+vdf4r  0.391000   0.000000   0.391000 (  0.383975)
+vdf    0.016000   0.000000   0.016000 (  0.012664)
+```
+
+Large VDF File (CS:GO's items_game.txt)
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/vdf.
