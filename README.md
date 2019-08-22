@@ -1,6 +1,6 @@
 # VDF
 
-VDF is a gem to convert Valve's KeyValue format to ruby hashes and back, based on the excellent https://github.com/node-steam/vdf
+VDF is a gem to convert Valve's KeyValue format to ruby hashes and back, based on the excellent [node-steam/vdf](https://github.com/node-steam/vdf)
 
 ## Installation
 
