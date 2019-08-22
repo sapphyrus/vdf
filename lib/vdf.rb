@@ -1,6 +1,8 @@
 require "vdf/version"
+require "vdf/parse"
+require "vdf/generate"
 
-module Vdf
-  class Error < StandardError; end
-  # Your code goes here...
+module VDF
+	class ParserError < StandardError
+	end
 end

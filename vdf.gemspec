@@ -4,7 +4,7 @@ require "vdf/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "vdf"
-  spec.version       = Vdf::VERSION
+  spec.version       = VDF::VERSION
   spec.authors       = ["Phil"]
   spec.email         = ["phil@sapphyrus.xyz"]
 
