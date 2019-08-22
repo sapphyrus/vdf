@@ -36,16 +36,47 @@ p parsed
 
 ```
 
+Creating one is too:
+
+```ruby
+require "vdf"
+
+# Set up hash to generate a VDF from
+object = {
+	"string" => "string",
+	"false" => false,
+	"true" => true,
+	"number" => 1234,
+	"float" => 12.34,
+	"null" => nil,
+	"nested" => {
+		"string" => "string",
+		"deep" => {
+			"string" => "string"
+		}
+	}
+}
+
+# Generate a VDF string and output it
+puts VDF.generate(object)
+
+```
+
 ## Performance comparison
 
 Small VDF File
 ```
        user       system     total    real
-vdf4r  0.391000   0.000000   0.391000 (  0.383975)
 vdf    0.016000   0.000000   0.016000 (  0.012664)
+vdf4r  0.391000   0.000000   0.391000 (  0.383975)
 ```
 
 Large VDF File (CS:GO's items_game.txt)
+```
+      user        system    total     real
+vdf   1.328000    0.047000   1.375000 (  1.418189)
+vdf4r 50.328000   0.031000  50.359000 ( 50.757693)
+```
 
 ## Contributing
 
