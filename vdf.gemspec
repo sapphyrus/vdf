@@ -5,7 +5,7 @@ require "vdf/version"
 Gem::Specification.new do |spec|
   spec.name          = "vdf"
   spec.version       = VDF::VERSION
-  spec.authors       = ["Phil"]
+  spec.authors       = ["sapphyrus"]
   spec.email         = ["phil5686@gmail.com"]
 
   spec.summary       = %q{Parses Valve's KeyValue format to Ruby Hashes and back}
