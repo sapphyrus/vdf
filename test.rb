@@ -1,5 +1,5 @@
 require "pry"
 require "bundler/setup"
-require "vdf/parse"
+require "vdf"
 
 binding.pry

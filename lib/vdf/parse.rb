@@ -6,7 +6,8 @@ module VDF
 				'([ \t]*(' +
 				'"((?:\\\\.|[^\\\\"])*)(")?' +
 				'|([a-z0-9\\-\\_]+)' +
-				'))?'
+				'))?',
+				Regexp::MULTILINE
 			)
 
 			def parse(text)
@@ -14,8 +15,14 @@ module VDF
 				object = {}
 				stack = [object]
 				expect = false
+				skip_lines = 0
 
 				lines.each_with_index do |line, i|
+					if skip_lines > 0
+						skip_lines -= 1
+						next
+					end
+
 					line.strip!
 					next if line == -'' || line[0] == -'/'
 
@@ -48,7 +55,8 @@ module VDF
 							expect = true
 						else
 							if m[7].nil? && m[8].nil?
-								line << -'\n' << lines[i+1]
+								line << -"\n" << lines[i+skip_lines+1].chomp
+								skip_lines += 1
 								next
 							end
 
@@ -60,17 +68,18 @@ module VDF
 								end
 							rescue ArgumentError
 								case val.downcase
-								when "true"
+								when -"true"
 									true
-								when "false"
+								when -"false"
 									false
-								when "null"
+								when -"null"
 									nil
 								else
 									val
 								end
 							end
 						end
+
 						break
 					end
 				end
