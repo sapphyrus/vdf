@@ -1,4 +1,4 @@
-# Vdf
+# VDF
 
 VDF is a gem to convert Valve's KeyValue format to ruby hashes and back, based on the excellent https://github.com/node-steam/vdf
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-Parsing a VDF is simple:
+Parsing a VDF file is simple:
 
 ```ruby
 require "vdf"
@@ -66,21 +66,23 @@ puts VDF.generate(object)
 
 Small VDF File
 ```
-       user       system     total    real
-vdf    0.016000   0.000000   0.016000 (  0.012664)
-vdf4r  0.391000   0.000000   0.391000 (  0.383975)
+      user       system     total     real
+vdf    0.015000   0.000000   0.015000 (  0.013349)
+vdf4r  0.391000   0.000000   0.391000 (  0.389993)
 ```
 
-Large VDF File (CS:GO's items_game.txt)
+Large VDF File (4MB - CS:GO's items_game.txt)
 ```
-      user        system    total     real
-vdf   1.328000    0.047000   1.375000 (  1.418189)
-vdf4r 50.328000   0.031000  50.359000 ( 50.757693)
+      user       system    total      real
+vdf    1.312000   0.031000   1.343000 (  1.348015)
+vdf4r 53.422000   0.016000  53.438000 ( 54.020029)
 ```
+
+Compared to the [vdf4r gem](https://github.com/skadistats/vdf4r) using [this script](https://gist.github.com/sapphyrus/3aab81ad06949c3743ad91e20ccf7c65).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/vdf.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sapphyrus/vdf.
 
 ## License
 
