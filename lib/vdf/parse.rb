@@ -30,7 +30,7 @@ module VDF
 						expect = false
 						next
 					elsif expect
-						raise ParserError, "Invalid syntax on line #{i+1} (1)"
+						raise ParserError, "Invalid syntax on line #{i+1}"
 					end
 
 					if line.start_with?(-'}')
@@ -41,7 +41,7 @@ module VDF
 					loop do
 						m = REGEX.match(line)
 						if m.nil?
-							raise ParserError, "Invalid syntax on line #{i+1} (2)"
+							raise ParserError, "Invalid syntax on line #{i+1}"
 						end
 
 						key = m[2] || m[3]

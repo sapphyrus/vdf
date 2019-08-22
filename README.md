@@ -2,6 +2,9 @@
 
 VDF is a gem to convert Valve's KeyValue format to ruby hashes and back, based on the excellent [node-steam/vdf](https://github.com/node-steam/vdf)
 
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fsapphyrus%2Fvdf%2Fbadge&style=popout)](https://actions-badge.atrox.dev/sapphyrus/vdf/goto)
+[![Gem](https://img.shields.io/gem/v/vdf?color=%23E9573F)](https://rubygems.org/gems/vdf)
+
 ## Installation
 
 Add this line to your application's Gemfile:
