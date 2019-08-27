@@ -1,7 +1,13 @@
 module VDF
+	# The Generator class is responsible for generating VDF documents from input hashes.
+	# @see VDF.generate
 	class Generator
 		class << self
 
+			# Generates a VDF document from a Ruby Hash and returns it
+			#
+			# @param object [Hash] the input object
+			# @return [String] the generated VDF document
 			def generate(object)
 				raise ArgumentError, "Object has to respond to each" unless object.respond_to? :each
 
@@ -27,6 +33,10 @@ module VDF
 		end
 	end
 
+	# Generates a VDF document from a ruby hash.
+	#
+	# @param object [Hash] the input object
+	# @return [String] the generated VDF document
 	def generate(object)
 		Generator.generate(object)
 	end

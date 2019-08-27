@@ -1,6 +1,9 @@
 module VDF
+	# The Parser class is responsible for parsing a VDF document into a Ruby Hash
+	# @see VDF.parse
 	class Parser
 		class << self
+			# Regex for splitting up a line in a VDF document into meaningful parts. Taken from {https://github.com/node-steam/vdf/blob/master/src/index.ts#L18-L24}
 			REGEX = Regexp.new(
 				'^("((?:\\\\.|[^\\\\"])+)"|([a-z0-9\\-\\_]+))' +
 				'([ \t]*(' +
@@ -9,7 +12,22 @@ module VDF
 				'))?',
 				Regexp::MULTILINE
 			)
+			private_constant :REGEX
 
+			# Parses a VDF document into a Ruby Hash and returns it
+			#
+			# For large files, it's recommended to pass the File object to VDF.parse instead of reading the whole File contents into memory
+			#
+			# @param input [String, File, #to_str, #each_line] the input object
+			# @return [Hash] the contents of the VDF document, parsed into a Ruby Hash
+			# @raise [ParserError] if the VDF document is invalid
+			# @example Parse the contents of a VDF String
+			#   contents = VDF.parse(string)
+			# @example Parse the contents of a VDF File
+			#   File.open("filename.vdf", "r") do |file|
+			#   	contents = VDF.parse(file)
+			#   	puts contents.inspect
+			#   end
 			def parse(input)
 				raise ArgumentError, "Input has to respond to :each_line or :to_str" unless input.respond_to?(:each_line) || input.respond_to?(:to_str)
 				input = StringIO.new(input) unless input.respond_to? :pos
@@ -91,8 +109,22 @@ module VDF
 		end
 	end
 
-	def parse(text)
-		Parser.parse(text)
+	# Parses a VDF document into a Ruby Hash and returns it
+	#
+	# For large files, it's recommended to pass the File object to VDF.parse instead of reading the whole File contents into memory
+	#
+	# @param input [String, File, #to_str, #each_line] the input object
+	# @return [Hash] the contents of the VDF document, parsed into a Ruby Hash
+	# @raise [ParserError] if the VDF document is invalid
+	# @example Parse the contents of a VDF String
+	#   contents = VDF.parse(string)
+	# @example Parse the contents of a VDF File
+	#   File.open("filename.vdf", "r") do |file|
+	#   	contents = VDF.parse(file)
+	#   	puts contents.inspect
+	#   end
+	def parse(input)
+		Parser.parse(input)
 	end
 	module_function :parse
 end
