@@ -37,7 +37,7 @@ module VDF
 				expect = false
 				i = 0
 
-				enum = input.each_line.lazy
+				enum = input.each_line
 				enum.with_index do |line, _|
 					i += 1
 					line.encode!("UTF-8").strip!
@@ -47,7 +47,7 @@ module VDF
 						expect = false
 						next
 					elsif expect
-						raise ParserError, "Invalid syntax on line #{i+1} (Expected identifier)"
+						raise ParserError, "Invalid syntax on line #{i+1} (Expected bracket)"
 					end
 
 					if line.start_with?(-'}')
@@ -103,6 +103,8 @@ module VDF
 						break
 					end
 				end
+
+				raise ParserError, "Open parentheses somewhere" unless stack.length == 1
 
 				return result
 			end
