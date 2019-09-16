@@ -1,9 +1,9 @@
 # VDF
 
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fsapphyrus%2Fvdf%2Fbadge&style=flat)](https://actions-badge.atrox.dev/sapphyrus/vdf/goto)
+[![GitHub issues](https://img.shields.io/github/issues/sapphyrus/vdf)](https://github.com/sapphyrus/vdf/issues)
 [![Gem](https://img.shields.io/gem/v/vdf?color=%23E9573F)](https://rubygems.org/gems/vdf)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](https://rubydoc.info/gems/vdf)
-[![GitHub issues](https://img.shields.io/github/issues/sapphyrus/vdf)](https://github.com/sapphyrus/vdf/issues)
 [![License](https://img.shields.io/github/license/sapphyrus/vdf)](https://github.com/sapphyrus/vdf/blob/master/LICENSE.txt)
 
 VDF is a gem to convert Valve's KeyValue format to Ruby hashes and back, based on the excellent [node-steam/vdf](https://github.com/node-steam/vdf)
@@ -65,6 +65,20 @@ object = {
 
 # Generate a VDF string and output it
 puts VDF.generate(object)
+
+```
+
+If you're dealing with parsing large files, you should avoid loading them into memory completely. This library supports parsing a VDF file from a File object like this:
+```ruby
+require "vdf"
+
+# Open the file in read mode and parse it.
+parsed = File.open("filename.vdf", "r") do |file|
+	VDF.parse(file)
+end
+
+# Pretty-print the result
+p parsed
 
 ```
 
