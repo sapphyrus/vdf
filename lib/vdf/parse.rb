@@ -54,7 +54,10 @@ module VDF
 						raise ParserError, "Invalid syntax on line #{i+1} (Expected bracket)"
 					end
 
-					if line.start_with?(-'}')
+					if line.start_with?('}')
+						if stack.length == 1
+							raise ParserError, "Invalid syntax on line #{i} (Unexpected closing bracket)"
+						end
 						stack.pop
 						next
 					end
