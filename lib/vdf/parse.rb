@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'stringio'
+
 module VDF
 	# The Parser class is responsible for parsing a VDF document into a Ruby Hash
 	# @see VDF.parse
@@ -29,7 +33,7 @@ module VDF
 			#   	puts contents.inspect
 			#   end
 			def parse(input)
-				raise ArgumentError, "Input has to respond to :each_line or :to_str" unless input.respond_to?(:each_line) || input.respond_to?(:to_str)
+				raise ArgumentError, 'Input has to respond to :each_line or :to_str' unless input.respond_to?(:each_line) || input.respond_to?(:to_str)
 				input = StringIO.new(input) unless input.respond_to? :pos
 
 				result = {}
@@ -40,10 +44,10 @@ module VDF
 				enum = input.each_line
 				enum.with_index do |line, _|
 					i += 1
-					line.encode!("UTF-8").strip!
-					next if line.empty? || line[0] == -'/'
+					line.encode!('UTF-8').strip!
+					next if line.empty? || line[0] == '/'
 
-					if line.start_with?(-'{')
+					if line.start_with?('{')
 						expect = false
 						next
 					elsif expect
@@ -76,7 +80,7 @@ module VDF
 								end
 
 								i += 1
-								line << -"\n" << next_line.to_s.encode("UTF-8").strip
+								line << "\n" << next_line.to_s.encode("UTF-8").strip
 								next
 							end
 
@@ -85,14 +89,14 @@ module VDF
 									Integer(val)
 								rescue ArgumentError
 									Float(val)
-								end
-							rescue ArgumentError
-								case val.downcase
-								when -"true"
+									end
+								rescue ArgumentError
+									case val.downcase
+								when 'true'
 									true
-								when -"false"
+								when 'false'
 									false
-								when -"null"
+								when 'null'
 									nil
 								else
 									val
@@ -104,7 +108,7 @@ module VDF
 					end
 				end
 
-				raise ParserError, "Open parentheses somewhere" unless stack.length == 1
+				raise ParserError, 'Open parentheses somewhere' unless stack.length == 1
 
 				return result
 			end

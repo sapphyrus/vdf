@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module VDF
 	# The Generator class is responsible for generating VDF documents from input hashes.
 	# @see VDF.generate
@@ -9,7 +11,7 @@ module VDF
 			# @param object [Hash] the input object
 			# @return [String] the generated VDF document
 			def generate(object)
-				raise ArgumentError, "Object has to respond to each" unless object.respond_to? :each
+				raise ArgumentError, 'Object has to respond to each' unless object.respond_to? :each
 
 				generate_impl(object, 0)
 			end
@@ -17,14 +19,14 @@ module VDF
 			private
 
 			def generate_impl(object, level)
-				result = ""
-				indent = -"\t"*level
+				result = String.new
+				indent = "\t" * level
 
 				object.each do |key, value|
 					if value.respond_to? :each
-						result << [indent, -'"', key, -"\"\n", indent, -"{\n", generate_impl(value, level + 1), indent, -"}\n"].join
+						result << [indent, '"', key, "\"\n", indent, "{\n", generate_impl(value, level + 1), indent, "}\n"].join
 					else
-						result << [indent, -'"', key, -'"', indent, indent, -'"', value.to_s, -"\"\n"].join
+						result << [indent, '"', key, '"', indent, indent, '"', value.to_s, "\"\n"].join
 					end
 				end
 

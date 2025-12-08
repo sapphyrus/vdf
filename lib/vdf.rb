@@ -1,6 +1,8 @@
-require "vdf/version"
-require "vdf/parse"
-require "vdf/generate"
+# frozen_string_literal: true
+
+require_relative 'vdf/version'
+require_relative 'vdf/parse'
+require_relative 'vdf/generate'
 
 # Main VDF module
 # @author sapphyrus
