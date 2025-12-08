@@ -68,7 +68,7 @@ puts VDF.generate(object)
 
 ```
 
-If you're dealing with parsing large files, you should avoid loading them into memory completely. This library supports parsing a VDF file from a File object like this:
+If you're dealing with parsing large files, you should avoid loading them into memory fully. This library supports parsing a VDF file from a File object like this:
 ```ruby
 require "vdf"
 
@@ -106,7 +106,7 @@ The latest version of this library can be downloaded at
 
 * https://rubygems.org/gems/vdf
 
-Online Documentation should be located at
+Online Documentation is located at
 
 * https://www.rubydoc.info/gems/vdf
 
